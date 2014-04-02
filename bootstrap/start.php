@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('your-machine-name'),
+	'local' => array('guest-wireless-upc-nat-206-117-88-083.usc.edu'),
 
 ));
 
