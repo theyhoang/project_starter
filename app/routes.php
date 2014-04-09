@@ -46,6 +46,38 @@ Route::get('/tweets', function()
     echo $json;
 });
 
+Route::get('/profile', function()
+{
+
+        $config = array(
+            'appId' => '477757815684886',
+            'secret' => '3ec86ab7063db93ca7565e8bf76e991d',
+        );
+
+
+   $facebook = new Facebook($config);
+
+   $yen = Cache::get('yen');
+   if($yen) {
+       echo "<h1>Was cached </h1>";
+       var_dump($yen);
+   } else {
+       echo "<h1>Not cached </h1>";
+       $yen =  $facebook->api('THEyenhoang','GET');
+       Cache::put('yen',$yen,10);
+       var_dump($yen);
+
+
+   }
+
+
+
+
+
+
+
+});
+
 
 Route::get('/buzzfeed', function()
 {

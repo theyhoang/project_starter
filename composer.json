@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.1.*",
     "tang/twitter-rest-api": "dev-master",
-    "cboden/Ratchet": "0.3.*"
+    "cboden/Ratchet": "0.3.*",
+    "facebook/php-sdk" : "dev-master"
 	},
 	"autoload": {
 		"classmap": [
