@@ -22,6 +22,7 @@ Route::get('/chat', function()
   return View::make('chat');
 });
 
+Route::get('/login','FacebookController@login');
 
 Route::get('/tweets', function()
 {
@@ -49,29 +50,33 @@ Route::get('/tweets', function()
 Route::get('/profile', function()
 {
 
+    $config = Cache::get('config');
+
+    if($config) {
+        echo "<h1>Config was cached</h1>";
+    } else {
+        echo "<h1>Config was Not cached </h1>";
         $config = array(
-            'appId' => '477757815684886',
-            'secret' => '3ec86ab7063db93ca7565e8bf76e991d',
+            'appId' => Config::get('facebook.appId'),
+            'secret' => Config::get('facebook.secret'),
         );
+        Cache::put('config',$config,10);
+    }
+
 
 
    $facebook = new Facebook($config);
 
    $yen = Cache::get('yen');
    if($yen) {
-       echo "<h1>Was cached </h1>";
+       echo "<h1>Profile was cached </h1>";
        var_dump($yen);
    } else {
-       echo "<h1>Not cached </h1>";
+       echo "<h1>Profile was Not cached </h1>";
        $yen =  $facebook->api('THEyenhoang','GET');
        Cache::put('yen',$yen,10);
        var_dump($yen);
-
-
    }
-
-
-
 
 
 
