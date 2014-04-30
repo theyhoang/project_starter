@@ -7,7 +7,8 @@
 		"laravel/framework": "4.1.*",
     "tang/twitter-rest-api": "dev-master",
     "cboden/Ratchet": "0.3.*",
-    "facebook/php-sdk" : "dev-master"
+    "facebook/php-sdk" : "dev-master",
+    "twitter/bootstrap": "*"
 	},
 	"autoload": {
 		"classmap": [

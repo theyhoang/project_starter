@@ -81,6 +81,9 @@ Route::get('/profile', function()
 
     //echo "education: " . var_dump($user_profile["education"]) . "<br>";
     echo "high school: " . $highschool . "<br>";
+
+    $fb_pic = "http://graph.facebook.com/".$user_profile['id']."/picture?type=large";
+    echo "fb_pic: <a href='" . $fb_pic . "'>facebook_profile_pic</a><br>";
     echo "user_profile: <br>";
 
 
