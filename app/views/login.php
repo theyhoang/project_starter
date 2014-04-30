@@ -19,7 +19,8 @@ if($user_id) {
         $user_profile = $facebook->api('/me','GET');
         echo "Name: " . $user_profile['name'];
 
-        echo '<a href="' . $facebook->getLogoutUrl() . '">logout</a>';
+        return Redirect::to('profile');
+
 
     } catch(FacebookApiException $e) {
         // If the user is logged out, you can have a 

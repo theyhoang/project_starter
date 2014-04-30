@@ -48,7 +48,53 @@ Route::get('/tweets', function()
 });
 
 Route::get('/profile', function()
-{
+    {
+
+        $config = Cache::get('config');
+
+        if($config) {
+            echo "<h1>Config was cached</h1>";
+        } else {
+            echo "<h1>Config was Not cached </h1>";
+            $config = array(
+                'appId' => Config::get('facebook.appId'),
+                'secret' => Config::get('facebook.secret'),
+            );
+            Cache::put('config',$config,10);
+        }
+
+
+
+   $facebook = new Facebook($config);
+
+    $user_profile = $facebook->api('/me','GET');
+    echo "Name: " . $user_profile['name'] . "<br>";
+    echo "facebook_id: " . $user_profile['id'] . "<br>";
+    echo "hometown: " . $user_profile['hometown']['name'] . "<br>";
+
+    foreach($user_profile["education"] as $education) {
+        if($education["type"] == "High School") {
+            $highschool = $education["school"]["name"];
+            break;
+        }
+    }
+
+    //echo "education: " . var_dump($user_profile["education"]) . "<br>";
+    echo "high school: " . $highschool . "<br>";
+    echo "user_profile: <br>";
+
+
+    var_dump($user_profile);
+
+   $params = array( 'next' => 'http://localhost:8000/logout' );
+   echo "<br><a href='". $facebook->getLogoutUrl($params) . "'>logout</a>";
+
+
+
+
+});
+
+Route::get('/logout', function() {
 
     $config = Cache::get('config');
 
@@ -65,20 +111,9 @@ Route::get('/profile', function()
 
 
 
-   $facebook = new Facebook($config);
-
-   $yen = Cache::get('yen');
-   if($yen) {
-       echo "<h1>Profile was cached </h1>";
-       var_dump($yen);
-   } else {
-       echo "<h1>Profile was Not cached </h1>";
-       $yen =  $facebook->api('THEyenhoang','GET');
-       Cache::put('yen',$yen,10);
-       var_dump($yen);
-   }
-
-
+    $facebook = new Facebook($config);
+    $facebook->destroySession();
+    echo "<h1>Logged Out</h1>";
 
 
 });
