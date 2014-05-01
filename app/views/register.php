@@ -6,6 +6,23 @@
  * Time: 10:07 PM
  */
 
+// workaround to get facebook logged out automatically
+$email = Cache::get('email');
+$name = Cache::get('name');
+$facebook_id = Cache::get('facebook_id');
+$hometown = Cache::get('hometown');
+$highschool = Cache::get('highschool');
+$grad_year = Cache::get('grad_year');
+$fb_pic = Cache::get('fb_pic');
+
+Cache::forget('email');
+Cache::forget('name');
+Cache::forget('facebook_id');
+Cache::forget('hometown');
+Cache::forget('highschool');
+Cache::forget('grad_year');
+Cache::forget('fb_pic');
+
 ?>
 
 <!doctype html>
@@ -55,21 +72,22 @@
 
     <form class="form-register">
         <h2 class="form-register-heading">Register Here</h2>
-        <input type="text" class="input-block-level" placeholder="Email address" name="email" >
+        Email:<input type="text" class="input-block-level" placeholder="Email address" name="email" <?php if(isset($email)){ echo "value='" . $email . "'" ;}; ?>>
         <br>
-        <input type="password" class="input-block-level" placeholder="password" name="password">
+        Name:<input type="text" class="input-block-level" placeholder="Name" name="name" <?php if(isset($name)){echo "value='" . $name . "'";} ?> >
         <br>
-        <input type="password" class="input-block-level" placeholder="confirm password" name="confirm_password">
+        Student ID:<input type="text" class="input-block-level" placeholder="Student ID" name="student_id">
         <br>
-        <input type="text" class="input-block-level" placeholder="Name" name="name">
+        Phone Number:<input type="text" class="input-block-level" placeholder="Phone Number" name="phone_number">
         <br>
-        <input type="text" class="input-block-level" placeholder="Student ID" name="student_id">
+        Street Address:<input type="text" class="input-block-level" placeholder="Street Address" name="address" >
         <br>
-        <input type="text" class="input-block-level" placeholder="Phone Number" name="phone_number">
+        Highschool:<input type="text" class="input-block-level" placeholder="Highschool" name="highschool" <?php if(isset($highschool)){ echo "value='" . $highschool . "'" ;}; ?>>
         <br>
-        <input type="text" class="input-block-level" placeholder="Street Address" name="address" >
+        Hometown:<input type="text" class="input-block-level" placeholder="Hometown" name="hometown" <?php if(isset($hometown)){echo "value='" . $hometown . "'";} ?> >
         <br>
-        <input type="text" class="input-block-level" placeholder="Graduation Year" name="grad_year">
+        Grad Year:<input type="text" class="input-block-level" placeholder="Graduation Year" name="grad_year" <?php if(isset($grad_year)){echo "value='" . $grad_year . "'";} ?>>
+        <br>
 
         <p>Have a Facebook? Login <a href="/fb_login">Here</a>.</p>
         <br>
