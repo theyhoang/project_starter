@@ -1,46 +1,73 @@
 <?php
-// Remember to copy files from the SDK's src/ directory to a
-// directory in your application on the server, such as php-sdk/
-
-$facebook = new Facebook($config);
-$user_id = $facebook->getUser();
+/**
+ * Created by PhpStorm.
+ * User: Yen Hoang
+ * Date: 4/30/14
+ * Time: 9:41 PM
+ */
 ?>
+
+<!doctype html>
 <html>
-<head></head>
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Home</title>
+
+    <style type="text/css">
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .form-signin {
+            max-width: 500px;
+            padding: 19px 29px 29px;
+            margin: 0 auto 20px;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin input[type="text"],
+        .form-signin input[type="password"] {
+            width: 100%;
+            font-size: 16px;
+            height: auto;
+            margin-bottom: 15px;
+            padding: 7px 9px;
+        }
+
+    </style>
+</head>
 <body>
 
-<?php
-if($user_id) {
+<div class="container">
 
-    // We have a user ID, so probably a logged in user.
-    // If not, we'll get an exception, which we handle below.
-    try {
+    <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="text" class="input-block-level" placeholder="Email address">
+        <input type="password" class="input-block-level" placeholder="Password">
 
-        $user_profile = $facebook->api('/me','GET');
-        echo "Name: " . $user_profile['name'];
+        <p>Don't have an account? Register <a href="/register">Here</a>.</p>
 
-        return Redirect::to('profile');
+        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
 
+        <div>
 
-    } catch(FacebookApiException $e) {
-        // If the user is logged out, you can have a 
-        // user ID even though the access token is invalid.
-        // In this case, we'll get an exception, so we'll
-        // just ask the user to login again here.
-        $login_url = $facebook->getLoginUrl();
-        echo 'Please <a href="' . $login_url . '">login.</a>';
-        error_log($e->getType());
-        error_log($e->getMessage());
-    }
-} else {
+        </div>
+    </form>
 
-    // No user, print a link for the user to login
-    $login_url = $facebook->getLoginUrl();
-    echo 'Please <a href="' . $login_url . '">login.</a>';
-
-}
-
-?>
+</div> <!-- /container -->
 
 </body>
 </html>
+

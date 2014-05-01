@@ -22,7 +22,11 @@ Route::get('/chat', function()
   return View::make('chat');
 });
 
-Route::get('/login','FacebookController@login');
+Route::get('/fb_login','FacebookController@login');
+
+Route::get('/login','RecruitController@login');
+
+Route::get('/register','RecruitController@register');
 
 Route::get('/tweets', function()
 {
@@ -91,11 +95,8 @@ Route::get('/profile', function()
 
    $params = array( 'next' => 'http://localhost:8000/logout' );
    echo "<br><a href='". $facebook->getLogoutUrl($params) . "'>logout</a>";
-
-
-
-
 });
+
 
 Route::get('/logout', function() {
 
@@ -116,7 +117,9 @@ Route::get('/logout', function() {
 
     $facebook = new Facebook($config);
     $facebook->destroySession();
-    echo "<h1>Logged Out</h1>";
+    return Redirect::to('login');
+
+
 
 
 });

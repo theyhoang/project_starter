@@ -24,6 +24,11 @@ class FacebookController extends BaseController{
         }
 
         $facebook = new Facebook($config);
+
+        //return View::make('fb_login', [
+          //  'facebook' => $facebook
+        //]);
+
         $user_id = $facebook->getUser();
         if($user_id) {
 
@@ -53,8 +58,7 @@ class FacebookController extends BaseController{
             echo 'Please <a href="' . $login_url . '">login.</a>';
 
         }
-
-        //$facebook = new Facebook($config);
     }
+
 
 } 
