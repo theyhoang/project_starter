@@ -93,7 +93,7 @@ Cache::forget('fb_pic');
         <br>
         Hometown:<input type="text" class="input-block-level" placeholder="Hometown" name="hometown" <?php if(isset($hometown)){echo "value='" . $hometown . "'";} ?> >
         <br>
-        Grad Year:<input type="text" class="input-block-level" placeholder="Graduation Year" name="grad_year" <?php if(isset($grad_year)){echo "value='" . $grad_year . "'";} ?>>
+        Grad Year:<input type="integer" class="input-block-level" placeholder="Graduation Year" name="grad_year" <?php if(isset($grad_year)){echo "value='" . $grad_year . "'";} ?>>
         <br>
         <?php
             if(isset($fb_pic)) {
@@ -102,7 +102,7 @@ Cache::forget('fb_pic');
         ?>
         <?php
         if(isset($facebook_id)) {
-            echo "<input type='text' class='hidden' name='facebook_id' value ='".$facebook_id."'>";
+            echo "<input type='integer' class='hidden' name='facebook_id' value ='".$facebook_id."'>";
         }
         ?>
 

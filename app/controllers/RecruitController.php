@@ -29,8 +29,13 @@ class RecruitController extends BaseController{
             $user->email = Input::get('email');
             $user->phone_number = Input::get('phone_number');
             $user->grad_year = Input::get('grad_year');
-            $user->facebook_id = Input::get('facebook_id');
-            $user->profile_picture = Input::get('profile_picture');
+            if(Input::get('facebook_id')) {
+                $user->facebook_id = Input::get('facebook_id');
+            }
+            if(Input::get('profile_picture')) {
+                $user->profile_picture = Input::get('profile_picture');
+            }
+
             $user->student_id = Input::get('student_id');
             //echo "student_id: " . $user->student_id;
             $user->save();

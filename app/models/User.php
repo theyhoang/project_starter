@@ -18,11 +18,11 @@ class User extends Eloquent {
         return Validator::make($input, [
             'email' => 'required|email',
             'name' => 'required|min:3',
-            'student_id' => 'required|numeric',
+            'student_id' => 'required|numeric|unique:users',
             'phone_number' => 'required|numeric|min:10',
             'highschool' => 'required|min:3',
             'hometown' => 'required|min:3',
-            'grad_year' => 'required|numeric|min:4',
+            'grad_year' => 'required|integer|min:4',
             'facebook_id' => 'integer',
             'profile_picture' => 'url'
         ]);

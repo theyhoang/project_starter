@@ -58,10 +58,9 @@ if (Session::has('success')) { ?>
 
 <div class="container">
 
-    <form class="form-signin">
+    <form class="form-signin" action="authenticate" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" class="input-block-level" placeholder="Email address">
-        <input type="password" class="input-block-level" placeholder="Password">
+        <input type="text" class="input-block-level" placeholder="Student ID" name="student_id">
 
         <p>Don't have an account? Register <a href="/register">Here</a>.</p>
 
