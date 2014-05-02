@@ -67,7 +67,7 @@ if (Session::has('error')) { ?>
 
     <form class="form-signin" action="admin_authenticate" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" class="input-block-level" placeholder="email" name="email">
+        <input type="text" class="input-block-level" placeholder="username" name="username">
         <input type="password" class="input-block-level" placeholder="password" name="password">
 
         <p>Not an admin? Login <a href="/login">Here</a>.</p>
