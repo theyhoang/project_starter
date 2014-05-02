@@ -1,3 +1,10 @@
+<?php if (Session::has('errors')) { ?>
+    <h5 style="color: red;">
+        <?php echo $errors;
+        ?>
+    </h5>
+<?php } ?>
+
 <?php
 /**
  * Created by PhpStorm.
@@ -70,7 +77,7 @@ Cache::forget('fb_pic');
 
 <div class="container">
 
-    <form class="form-register">
+    <form class="form-register" action="process" method="post">
         <h2 class="form-register-heading">Register Here</h2>
         Email:<input type="text" class="input-block-level" placeholder="Email address" name="email" <?php if(isset($email)){ echo "value='" . $email . "'" ;}; ?>>
         <br>
@@ -88,6 +95,16 @@ Cache::forget('fb_pic');
         <br>
         Grad Year:<input type="text" class="input-block-level" placeholder="Graduation Year" name="grad_year" <?php if(isset($grad_year)){echo "value='" . $grad_year . "'";} ?>>
         <br>
+        <?php
+            if(isset($fb_pic)) {
+                echo "<input type='text' class='hidden' name='profile_picture' value ='".$fb_pic."'>";
+            }
+        ?>
+        <?php
+        if(isset($facebook_id)) {
+            echo "<input type='text' class='hidden' name='facebook_id' value ='".$facebook_id."'>";
+        }
+        ?>
 
         <p>Have a Facebook? Login <a href="/fb_login">Here</a>.</p>
         <br>

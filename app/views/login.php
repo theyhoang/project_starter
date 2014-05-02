@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Created by PhpStorm.
@@ -5,7 +6,12 @@
  * Date: 4/30/14
  * Time: 9:41 PM
  */
-?>
+
+if (Session::has('success')) { ?>
+    <h1 style="color: green;">
+        <?php echo Session::get('success') ?>
+    </h1>
+<?php } ?>
 
 <!doctype html>
 <html>

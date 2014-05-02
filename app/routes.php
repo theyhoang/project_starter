@@ -30,6 +30,8 @@ Route::get('/register','RecruitController@register');
 
 Route::get('/fb_profile', "FacebookController@profile");
 
+Route::post('/process', "RecruitController@process");
+
 Route::get('/logout', function() {
 
     $config = Cache::get('config');
