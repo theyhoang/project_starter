@@ -65,12 +65,12 @@ if (Session::has('error')) { ?>
 
 <div class="container">
 
-    <form class="form-signin" action="authenticate" method="post">
+    <form class="form-signin" action="admin_authenticate" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" class="input-block-level" placeholder="Student ID" name="student_id">
+        <input type="text" class="input-block-level" placeholder="email" name="email">
+        <input type="password" class="input-block-level" placeholder="password" name="password">
 
-        <p>Don't have an account? Register <a href="/register">Here</a>.</p>
-        <p>Admin? Login <a href="admin_login">Here</a>.</p>
+        <p>Not an admin? Login <a href="/login">Here</a>.</p>
 
         <button class="btn btn-large btn-primary" type="submit">Sign in</button>
 

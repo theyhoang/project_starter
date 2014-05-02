@@ -32,32 +32,11 @@ Route::get('/fb_profile', "FacebookController@profile");
 
 Route::post('/process', "RecruitController@process");
 
-Route::get('/logout', function() {
+Route::post('/authenticate',"RecruitController@authenticate");
 
-    $config = Cache::get('config');
+Route::get('/admin_login',"AdminController@login");
 
-    if($config) {
-        echo "<h1>Config was cached</h1>";
-    } else {
-        echo "<h1>Config was Not cached </h1>";
-        $config = array(
-            'appId' => Config::get('facebook.appId'),
-            'secret' => Config::get('facebook.secret'),
-        );
-        Cache::put('config',$config,10);
-    }
+Route::post('/admin_authenticate',"AdminController@authenticate");
 
-    $facebook = new Facebook($config);
-    $facebook->destroySession();
-    return Redirect::to('login');
-});
-
-
-Route::get('/buzzfeed', function()
-{
-	$curl = new ITP\Utils\JsonCurl();
-	$buzzfeed = new ITP\API\Buzzfeed($curl);
-
-	dd($buzzfeed->get());
-});
+Route::get('/admin_home',"AdminController@home");
 

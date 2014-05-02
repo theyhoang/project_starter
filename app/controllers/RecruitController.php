@@ -49,4 +49,33 @@ class RecruitController extends BaseController{
 
     }
 
+    public function authenticate() {
+        $event_id = Cache::get('event_id');
+        if(!$event_id) {
+            $event_id = 4;
+        }
+
+        $student_id = Input::get('student_id');
+
+        $users = User::all();
+
+        $check = false;
+
+        foreach ($users as $user) {
+            if($user->student_id == $student_id) {
+                $sign_in = new Signin();
+                $sign_in->user_id = $user->user_id;
+                $sign_in->event_id = $event_id;
+                $sign_in->save();
+
+                return Redirect::to('login')
+                    ->with('success',"Thanks for logging in ". $user->name."!");
+            }
+        }
+
+        return Redirect::to('login')
+               ->with('error',"Student ID not found. Try Again.");
+
+    }
+
 }
