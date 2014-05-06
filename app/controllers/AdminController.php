@@ -17,7 +17,7 @@ class AdminController extends BaseController {
         }
 
 
-        return View::make('adminLogin');
+        return View::make('admin_login');
 
     }
 
@@ -49,7 +49,7 @@ class AdminController extends BaseController {
             return REDIRECT::to('admin_login');
         }
         else {
-            echo "Welcome to admin home!";
+            return View::make('home');
         }
 
     }
