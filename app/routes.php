@@ -40,3 +40,17 @@ Route::post('/admin_authenticate',"AdminController@authenticate");
 
 Route::get('/admin_home',"AdminController@home");
 
+Route::get('/admin_logout',"AdminController@logout");
+
+Route::get('/set_event',"AdminController@setEvent");
+
+Route::get('/delete_recruit',"AdminController@deleteRecruit");
+
+Route::get('/update_recruit/{id}', function($id)
+{
+    $user = User::find($id);
+
+    return View::make('update_recruit', [
+        'user' => $user
+    ]);
+});

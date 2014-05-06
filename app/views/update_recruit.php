@@ -9,7 +9,7 @@
 
 <html>
 <head>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <title>Admin Home</title>
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
@@ -40,35 +40,35 @@
 
 <table class="table-bordered">
     <thead>
-        <tr>
-            <th>Picture</th>
-            <th>Name</th>
-            <th>Grad Year</th>
-            <th>Phone Number</th>
-            <th>Status</th>
-            <th>Update/Delete</th>
-        </tr>
+    <tr>
+        <th>Picture</th>
+        <th>Name</th>
+        <th>Grad Year</th>
+        <th>Phone Number</th>
+        <th>Status</th>
+        <th>Update/Delete</th>
+    </tr>
     </thead>
     <tbody>
-        <?php foreach($users as $user) :{
+    <?php
 
-            echo "<tr>";
-            echo "<td><img src='$user->profile_picture'></td>";
-            echo "<td style='text-align:center'>".$user->name."</td>";
-            echo "<td style='text-align:center'>".$user->grad_year."</td>";
-            echo "<td style='text-align:center'>".$user->phone_number."</td>";
+    echo "<tr>";
+    echo "<td><img src='$user->profile_picture'></td>";
+    echo "<td style='text-align:center'>".$user->name."</td>";
+    echo "<td style='text-align:center'>".$user->grad_year."</td>";
+    echo "<td style='text-align:center'>".$user->phone_number."</td>";
 
-            $statuses = Status::all();
-            foreach ($statuses as $status) :{
-                if($status->status_id == $user->status_id) {
-                    $status_name = $status->status;
-                }
-            } endforeach;
+    $statuses = Status::all();
+    foreach ($statuses as $status) :{
+        if($status->status_id == $user->status_id) {
+            $status_name = $status->status;
+        }
+    } endforeach;
 
-            echo "<td style='text-align:center'>".$status_name ."</td>";
-            echo "<td style='text-align:center'><a href='update_recruit/$user->id/'>Update/Delete</a></td>";
-            echo "</tr>";
-        } endforeach ?>
+    echo "<td style='text-align:center'>".$status_name ."</td>";
+    echo "<td style='text-align:center'><a href='save'>Save</a></td>";
+    echo "</tr>";
+    ?>
 
 
 

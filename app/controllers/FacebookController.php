@@ -115,7 +115,8 @@ class FacebookController extends BaseController{
                 $highschool = $education["school"]["name"];
             }
             if($education["type"] == "College" && $education["school"]["name"] == "University of Southern California") {
-                $grad_year = $education["year"]["name"];
+                if(isset($education["year"]["name"]))
+                    $grad_year = $education["year"]["name"];
             }
         }
 
@@ -147,7 +148,8 @@ class FacebookController extends BaseController{
         Cache::put('facebook_id',$facebook_id,10);
         Cache::put('hometown',$hometown,1);
         Cache::put('highschool',$highschool,1);
-        Cache::put('grad_year',$grad_year,1);
+        if(isset($grad_year))
+            Cache::put('grad_year',$grad_year,1);
         Cache::put('fb_pic',$fb_pic,10);
 
 

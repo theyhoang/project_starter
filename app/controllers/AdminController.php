@@ -46,12 +46,30 @@ class AdminController extends BaseController {
     public function home() {
         $loggedIn = Session::get('loggedIn');
         if(!$loggedIn){
-            return REDIRECT::to('admin_login');
+            return Redirect::to('admin_login');
         }
         else {
-            return View::make('home');
+            $users = User::all();
+            return View::make('home',[
+                'users' => $users
+            ]);
         }
 
+    }
+
+    public function logout() {
+        Session::flush();
+
+        return Redirect::to('admin_login');
+
+    }
+
+    public function updateRecruit($id) {
+            $user = User::find($id);
+
+            return View::make('update_recruit', [
+                'user' => $user
+            ]);
     }
 
 } 
