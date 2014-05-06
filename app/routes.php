@@ -46,11 +46,6 @@ Route::get('/set_event',"AdminController@setEvent");
 
 Route::get('/delete_recruit',"AdminController@deleteRecruit");
 
-Route::get('/update_recruit/{id}', function($id)
-{
-    $user = User::find($id);
+Route::get('/update_recruit/{id}', "AdminController@updateRecruit");
 
-    return View::make('update_recruit', [
-        'user' => $user
-    ]);
-});
+Route::get('/recruit_profile', "AdminController@recruitProfile");

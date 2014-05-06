@@ -51,6 +51,8 @@
     </thead>
     <tbody>
     <?php
+    if(Session::has('user'))
+        $user = Session::get('user');
 
     echo "<tr>";
     echo "<td><img src='$user->profile_picture'></td>";

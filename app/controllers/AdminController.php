@@ -67,9 +67,13 @@ class AdminController extends BaseController {
     public function updateRecruit($id) {
             $user = User::find($id);
 
-            return View::make('update_recruit', [
-                'user' => $user
-            ]);
+            return Redirect::to('recruit_profile')->with('user',$user);
+    }
+
+    public function recruitProfile() {
+
+            return View::make('recruit_profile');
+
     }
 
 } 
