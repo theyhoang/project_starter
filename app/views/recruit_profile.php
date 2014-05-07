@@ -56,7 +56,7 @@
 
 
     echo "<form class='form-register' action='update_recruit' method='post'>";
-    echo "<input name='id' type='Integer' class='hidden' value='$user->id'></input>";
+    echo "<input name='id' type='Integer' class='hidden' value='$user->id' />";
     echo "<tr>";
     echo "<td><img src='$user->profile_picture'></td>";
     echo "<td style='text-align:center'>".$user->name."</td>";

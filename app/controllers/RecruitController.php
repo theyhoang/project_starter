@@ -64,7 +64,7 @@ class RecruitController extends BaseController{
         foreach ($users as $user) {
             if($user->student_id == $student_id) {
                 $sign_in = new Signin();
-                $sign_in->user_id = $user->user_id;
+                $sign_in->user_id = $user->id;
                 $sign_in->event_id = $event_id;
                 $sign_in->save();
 

@@ -3,14 +3,14 @@
  * Created by PhpStorm.
  * User: Yen Hoang
  * Date: 5/6/14
- * Time: 12:06 PM
+ * Time: 6:11 PM
  */
 ?>
 
 <html>
 <head>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <title>Admin Home</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>Set Event</title>
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -40,43 +40,46 @@
 
 <table class="table-bordered">
     <thead>
-        <tr>
-            <th>Picture</th>
-            <th>Name</th>
-            <th>Grad Year</th>
-            <th>Phone Number</th>
-            <th>Status</th>
-            <th>Update/Delete</th>
-        </tr>
+    <tr>
+        <th>Event ID</th>
+        <th>Event</th>
+    </tr>
     </thead>
     <tbody>
-        <?php foreach($users as $user) :{
-
-            echo "<tr>";
-            echo "<td><img src='$user->profile_picture'></td>";
-            echo "<td style='text-align:center'>".$user->name."</td>";
-            echo "<td style='text-align:center'>".$user->grad_year."</td>";
-            echo "<td style='text-align:center'>".$user->phone_number."</td>";
-
-            $statuses = Status::all();
-            foreach ($statuses as $status) :{
-                if($status->status_id == $user->status_id) {
-                    $status_name = $status->status;
-                }
-            } endforeach;
-
-            echo "<td style='text-align:center'>".$status_name ."</td>";
-            echo "<td style='text-align:center'><a href='view_recruit/$user->id/'>View</a></td>";
-            echo "</tr>";
-        } endforeach ?>
-
-
-
+    <?php
+        foreach($events as $event) {
+            echo "<tr><td>$event->event_id</td><td>$event->event</td></tr>";
+        }
+    ?>
     </tbody>
 </table>
+<form class="form-register" action="cache_event" method="post">
+<select name="event_id">
+    <?php
+    $event_id = Cache::get('event_id');
 
+    foreach($events as $event) {
+        if(isset($event_id) && $event_id == $event->event_id) {
+            echo "<option value='$event->event_id' selected>$event->event</option>";
+        }
+        else {
+            echo "<option value='$event->event_id'>$event->event</option>";
+        }
+
+    }
+    ?>
+</select>
+    <button class='btn btn-success' type='submit'>Set Event</button>
+</form>
+
+
+    <h2>Create Event</h2>
+
+    <form class='form-register' action='register_event' method='post'>
+        <input name='event' type='text' placeholder="event name"/>
+        <button class='btn btn-success' type='submit'>Register Event</button>
+    </form>
 
 
 </body>
 </html>
-

@@ -76,19 +76,19 @@ class AdminController extends BaseController {
     }
 
     public function updateRecruit() {
-        //if(Input::has('id')) {
-            $id = Input::get('id');
-        //}
+        $id = Input::get('id');
 
-        //if(Input::has('status')) {
-            $status_id = Input::get('status');
-        //}
+        $status_id = Input::get('status');
 
         $user = User::find($id);
 
         $user->status_id = $status_id;
 
         $user->save();
+
+        if($user->status_id == 3) {
+            $user->delete();
+        }
 
         return Redirect::to('admin_home');
     }
@@ -101,6 +101,34 @@ class AdminController extends BaseController {
 
             return View::make('recruit_profile');
 
+    }
+
+    public function setEvent() {
+        $events = RushEvent::all();
+        return View::make('set_event',[
+            'events' => $events
+        ]);
+    }
+
+    public function registerEvent() {
+        $event_name = Input::get('event');
+
+        $event = new RushEvent();
+        $event->event = $event_name;
+        if(isset($event->event)) {
+            $event->save();
+
+        }
+
+        return Redirect::to('set_event');
+    }
+
+    public function cacheEvent() {
+        $event_id = Input::get('event_id');
+        if(isset($event_id))
+            Cache::put('event_id',$event_id,300);
+
+        return Redirect::to('set_event');
     }
 
 } 

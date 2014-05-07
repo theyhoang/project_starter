@@ -49,3 +49,7 @@ Route::post('/update_recruit/', "AdminController@updateRecruit");
 Route::get('/view_recruit/{id}', "AdminController@viewRecruit");
 
 Route::get('/recruit_profile', "AdminController@recruitProfile");
+
+Route::post('/register_event',"AdminController@registerEvent");
+
+Route::post('/cache_event',"AdminController@cacheEvent");
