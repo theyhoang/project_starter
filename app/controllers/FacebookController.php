@@ -108,7 +108,10 @@ class FacebookController extends BaseController{
 
         $name = $user_profile['name'];
         $facebook_id = $user_profile['id'];
-        $hometown = $user_profile['hometown']['name'];
+        if(isset($user_profile['hometown']['name']))
+            $hometown = $user_profile['hometown']['name'];
+
+        if(isset($user_profile["education"])){
 
         foreach($user_profile["education"] as $education) {
             if($education["type"] == "High School") {
@@ -118,6 +121,7 @@ class FacebookController extends BaseController{
                 if(isset($education["year"]["name"]))
                     $grad_year = $education["year"]["name"];
             }
+        }
         }
 
 
