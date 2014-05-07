@@ -38,7 +38,7 @@
 </head>
 <body>
 
-<table class="table-bordered">
+<table class="table-bordered" style="margin: auto">
     <thead>
         <tr>
             <th>Picture</th>
@@ -46,7 +46,7 @@
             <th>Grad Year</th>
             <th>Phone Number</th>
             <th>Status</th>
-            <th>Update/Delete</th>
+            <th>View</th>
         </tr>
     </thead>
     <tbody>
@@ -66,7 +66,7 @@
             } endforeach;
 
             echo "<td style='text-align:center'>".$status_name ."</td>";
-            echo "<td style='text-align:center'><a href='view_recruit/$user->id/'>View</a></td>";
+            echo "<td style='text-align:center'><a href='view_recruit/$user->id/'>View Profile</a></td>";
             echo "</tr>";
         } endforeach ?>
 

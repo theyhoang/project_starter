@@ -10,5 +10,6 @@ class RushEvent extends Eloquent{
 
     protected $table = 'event';
     public $timestamps = false;
+    protected $primaryKey = 'event_id';
 
 } 

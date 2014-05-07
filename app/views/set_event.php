@@ -39,20 +39,23 @@
 <body>
 
 <table class="table-bordered">
+    <caption>Available Events</caption>
     <thead>
     <tr>
         <th>Event ID</th>
         <th>Event</th>
+        <th>Remove?</th>
     </tr>
     </thead>
     <tbody>
     <?php
         foreach($events as $event) {
-            echo "<tr><td>$event->event_id</td><td>$event->event</td></tr>";
+            echo "<tr><td>$event->event_id</td><td>$event->event</td><td><a href='delete_event/$event->event_id'>Delete</a></td></tr>";
         }
     ?>
     </tbody>
 </table>
+<div style="margin:auto">
 <form class="form-register" action="cache_event" method="post">
 <select name="event_id">
     <?php
@@ -71,15 +74,16 @@
 </select>
     <button class='btn btn-success' type='submit'>Set Event</button>
 </form>
+    </div>
 
-
+    <div style="margin:auto">
     <h2>Create Event</h2>
 
-    <form class='form-register' action='register_event' method='post'>
+    <form class='form-register' action='register_event' method='post' >
         <input name='event' type='text' placeholder="event name"/>
         <button class='btn btn-success' type='submit'>Register Event</button>
     </form>
-
+    </div>
 
 </body>
 </html>

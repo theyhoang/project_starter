@@ -38,13 +38,14 @@
 </head>
 <body>
 
-<table class="table-bordered">
+<table class="table-bordered" style="margin:auto">
     <thead>
     <tr>
         <th>Picture</th>
         <th>Name</th>
         <th>Grad Year</th>
         <th>Phone Number</th>
+        <th>Sign ins</th>
         <th>Status</th>
         <th>Update/Delete</th>
     </tr>
@@ -62,6 +63,20 @@
     echo "<td style='text-align:center'>".$user->name."</td>";
     echo "<td style='text-align:center'>".$user->grad_year."</td>";
     echo "<td style='text-align:center'>".$user->phone_number."</td>";
+    echo "<td style='text-align:center'><ul>";
+    $signins = Signin::all();
+    foreach($signins as $signin): {
+        if($signin->user_id == $user->id) {
+            $events = RushEvent::all();
+            foreach($events as $event): {
+                if($signin->event_id == $event->event_id) {
+                    echo "<li>$event->event</li>";
+                }
+            } endforeach;
+        }
+    } endforeach;
+    echo "</ul></td>";
+
 
 
     echo "<td style='text-align:center'><select name='status'>";

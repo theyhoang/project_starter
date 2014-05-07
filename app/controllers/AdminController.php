@@ -75,7 +75,34 @@ class AdminController extends BaseController {
             return Redirect::to('recruit_profile')->with('user',$user);
     }
 
+    public function deleteEvent($event_id) {
+        $loggedIn = Session::get('loggedIn');
+        if(!$loggedIn){
+            return Redirect::to('admin_login');
+        }
+
+        $events = RushEvent::all();
+
+        foreach($events as $event): {
+            if($event_id == $event->event_id) {
+                $event->delete();
+                break;
+            }
+
+        } endforeach;
+
+
+
+        return Redirect::to('set_event');
+
+    }
+
     public function updateRecruit() {
+        $loggedIn = Session::get('loggedIn');
+        if(!$loggedIn){
+            return Redirect::to('admin_login');
+        }
+
         $id = Input::get('id');
 
         $status_id = Input::get('status');
@@ -104,6 +131,10 @@ class AdminController extends BaseController {
     }
 
     public function setEvent() {
+        $loggedIn = Session::get('loggedIn');
+        if(!$loggedIn){
+            return Redirect::to('admin_login');
+        }
         $events = RushEvent::all();
         return View::make('set_event',[
             'events' => $events
@@ -111,6 +142,10 @@ class AdminController extends BaseController {
     }
 
     public function registerEvent() {
+        $loggedIn = Session::get('loggedIn');
+        if(!$loggedIn){
+            return Redirect::to('admin_login');
+        }
         $event_name = Input::get('event');
 
         $event = new RushEvent();
@@ -124,6 +159,10 @@ class AdminController extends BaseController {
     }
 
     public function cacheEvent() {
+        $loggedIn = Session::get('loggedIn');
+        if(!$loggedIn){
+            return Redirect::to('admin_login');
+        }
         $event_id = Input::get('event_id');
         if(isset($event_id))
             Cache::put('event_id',$event_id,300);

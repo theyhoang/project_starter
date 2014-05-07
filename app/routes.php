@@ -48,6 +48,8 @@ Route::post('/update_recruit/', "AdminController@updateRecruit");
 
 Route::get('/view_recruit/{id}', "AdminController@viewRecruit");
 
+Route::get('/delete_event/{event_id}', "AdminController@deleteEvent");
+
 Route::get('/recruit_profile', "AdminController@recruitProfile");
 
 Route::post('/register_event',"AdminController@registerEvent");
