@@ -170,4 +170,54 @@ class AdminController extends BaseController {
         return Redirect::to('set_event');
     }
 
+
+    public function admins() {
+        $admins = Admin::all();
+
+        return View::make('admins', [
+            'admins' => $admins
+        ]);
+
+    }
+
+    public function deleteAdmin($username) {
+        $loggedIn = Session::get('loggedIn');
+        if(!$loggedIn){
+            return Redirect::to('admin_login');
+        }
+        $admin = Admin::find($username);
+
+        if(isset($admin)) {
+            $admin->delete();
+        }
+        return Redirect::to('admins');
+    }
+
+    public function registerAdmin() {
+        $loggedIn = Session::get('loggedIn');
+        if(!$loggedIn){
+            return Redirect::to('admin_login');
+        }
+
+        $admin = new Admin();
+
+
+
+        $username = Input::get('username');
+        $password = Input::get('password');
+
+        if(isset($username) && isset($password)) {
+            $input = [$username,$password];
+            if($admin->validate($input)){
+                $admin->username = $username;
+                $admin->password = sha1($password);
+                $admin->save();
+            }
+        }
+
+
+        return Redirect::to('admins');
+
+
+    }
 } 

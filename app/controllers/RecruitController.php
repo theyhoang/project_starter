@@ -52,7 +52,7 @@ class RecruitController extends BaseController{
     public function authenticate() {
         $event_id = Cache::get('event_id');
         if(!$event_id) {
-            $event_id = 4;
+            $event_id = -1;
         }
 
         $student_id = Input::get('student_id');

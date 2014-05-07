@@ -9,11 +9,12 @@
 class Admin extends Eloquent{
     protected $table = "admins";
     public $timestamps = false;
+    protected $primaryKey = "username";
 
 
     public function validate($input) {
         return Validator::make($input, [
-            'email' => 'required|email',
+            'username' => 'required|min:3',
             'password' => 'required|min:3'
         ]);
     }

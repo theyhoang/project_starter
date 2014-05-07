@@ -55,3 +55,9 @@ Route::get('/recruit_profile', "AdminController@recruitProfile");
 Route::post('/register_event',"AdminController@registerEvent");
 
 Route::post('/cache_event',"AdminController@cacheEvent");
+
+Route::get('/admins',"AdminController@admins");
+
+Route::get('/delete_admin/{username}',"AdminController@deleteAdmin");
+
+Route::post('/register_admin',"AdminController@registerAdmin");
