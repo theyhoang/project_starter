@@ -66,7 +66,7 @@
             } endforeach;
 
             echo "<td style='text-align:center'>".$status_name ."</td>";
-            echo "<td style='text-align:center'><a href='update_recruit/$user->id/'>Update/Delete</a></td>";
+            echo "<td style='text-align:center'><a href='view_recruit/$user->id/'>Update/Delete</a></td>";
             echo "</tr>";
         } endforeach ?>
 

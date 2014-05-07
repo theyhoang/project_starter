@@ -64,13 +64,40 @@ class AdminController extends BaseController {
 
     }
 
-    public function updateRecruit($id) {
+    public function viewRecruit($id) {
+        $loggedIn = Session::get('loggedIn');
+        if(!$loggedIn){
+            return Redirect::to('admin_login');
+        }
+
             $user = User::find($id);
 
             return Redirect::to('recruit_profile')->with('user',$user);
     }
 
+    public function updateRecruit() {
+        //if(Input::has('id')) {
+            $id = Input::get('id');
+        //}
+
+        //if(Input::has('status')) {
+            $status_id = Input::get('status');
+        //}
+
+        $user = User::find($id);
+
+        $user->status_id = $status_id;
+
+        $user->save();
+
+        return Redirect::to('admin_home');
+    }
+
     public function recruitProfile() {
+        $loggedIn = Session::get('loggedIn');
+        if(!$loggedIn){
+            return Redirect::to('admin_login');
+        }
 
             return View::make('recruit_profile');
 

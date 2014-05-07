@@ -51,25 +51,34 @@
     </thead>
     <tbody>
     <?php
-    if(Session::has('user'))
+    if(Session::has('user')) {
         $user = Session::get('user');
 
+
+    echo "<form class='form-register' action='update_recruit' method='post'>";
+    echo "<input name='id' type='Integer' class='hidden' value='$user->id'></input>";
     echo "<tr>";
     echo "<td><img src='$user->profile_picture'></td>";
     echo "<td style='text-align:center'>".$user->name."</td>";
     echo "<td style='text-align:center'>".$user->grad_year."</td>";
     echo "<td style='text-align:center'>".$user->phone_number."</td>";
 
+
+    echo "<td style='text-align:center'><select name='status'>";
     $statuses = Status::all();
     foreach ($statuses as $status) :{
         if($status->status_id == $user->status_id) {
-            $status_name = $status->status;
+            echo "<option value='$status->status_id' selected>$status->status</option>";
+        }
+        else {
+            echo "<option value='$status->status_id'>$status->status</option>";
         }
     } endforeach;
 
-    echo "<td style='text-align:center'>".$status_name ."</td>";
-    echo "<td style='text-align:center'><a href='save'>Save</a></td>";
-    echo "</tr>";
+   //<option></select>".$status_name ."</td>";
+    echo "<td style='text-align:center'> <button class='btn btn-large btn-success' type='submit'>Update</button></td>";
+    echo "</tr></form>";
+    }
     ?>
 
 

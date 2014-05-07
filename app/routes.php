@@ -44,8 +44,8 @@ Route::get('/admin_logout',"AdminController@logout");
 
 Route::get('/set_event',"AdminController@setEvent");
 
-Route::get('/delete_recruit',"AdminController@deleteRecruit");
+Route::post('/update_recruit/', "AdminController@updateRecruit");
 
-Route::get('/update_recruit/{id}', "AdminController@updateRecruit");
+Route::get('/view_recruit/{id}', "AdminController@viewRecruit");
 
 Route::get('/recruit_profile', "AdminController@recruitProfile");
