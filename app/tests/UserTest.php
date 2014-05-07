@@ -9,15 +9,7 @@
 class UserTest extends TestCase{
 
     public function testUserValidate(){
-        'email' => 'required|email',
-            'name' => 'required|min:3',
-            'student_id' => 'required|numeric|unique:users',
-            'phone_number' => 'required|numeric|min:10',
-            'highschool' => 'required|min:3',
-            'hometown' => 'required|min:3',
-            'grad_year' => 'required|integer|min:4',
-            'facebook_id' => 'integer',
-            'profile_picture' => 'url'
+
 
         $email = "yenh@usc.edu";
         $name = "Yen";
@@ -25,8 +17,10 @@ class UserTest extends TestCase{
         $phone_number = "4053652988";
         $highschool = "Westmoore High School";
         $hometown = "Oklahoma City";
+        $grad_year = 2014;
+        $facebook_id = 999;
 
-        $input = [$email,$name,$student_id,$phone_number,$highschool,$hometown];
+        $input = [$email,$name,$student_id,$phone_number,$highschool,$hometown,$grad_year,$facebook_id];
 
         $this->assertTrue(User::validate($input));
     }
@@ -40,6 +34,8 @@ class UserTest extends TestCase{
         $user->phone_number = "4053652988";
         $user->highschool = "Westmoore High School";
         $user->hometown = "Oklahoma City";
+        $user->$grad_year = 2014;
+        $user->$facebook_id = 999;
 
         $user->save();
 
